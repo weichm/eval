@@ -1,0 +1,14 @@
+### Node-Installation Linux (Ubuntu)
+apt-get install nodejs
+als normaler Nutzer: /usr/bin/node
+
+### Node-Installation Win 7
+http://nodejs.org/download/ --> .msi Installer verwenden (nicht .exe-Datei, da die nicht npm installiert), Installdir: C:\nodejs
+Verzeichnis für die App erstellen: c:\nodejs_myapp
+dann cmd starten und cd c:\nodejs_myapp eingeben
+
+### Installation plugins
+#Express installieren
+npm install express
+(alternativ: npm install -g express --> installs globally)
+--> erstellt Ordner node_modules

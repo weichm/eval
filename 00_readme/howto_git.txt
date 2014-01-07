@@ -1,0 +1,12 @@
+http://ndpsoftware.com/git-cheatsheet.html
+https://na1.salesforce.com/help/pdfs/en/salesforce_git_developer_cheatsheet.pdf
+http://git-scm.com/book/de/
+http://rogerdudler.github.io/git-guide/index.de.html
+
+Ubuntu:
+apt-get install git
+apt-get install gitk    --> gitk
+apt-get install git-gui --> git gui
+
+Windows:
+tortoise git???
