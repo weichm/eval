@@ -1,43 +1,23 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" ng-app="evalApp">
  <head>
   <meta charset="utf-8">
-  <title>mytitle</title>
-  <script src="jquery-2.0.3.min.js" type="text/javascript"></script>
+  <title>Evaluation am JHG</title>
+  <script src="js/angular.js" type="text/javascript"></script>
+  <script src="js/controllers.js" type="text/javascript"></script>
  </head>
- <body>
-  
-  <h1>uberschrift</h1>
-  Hallo body.
-  <table id="table1" border="1">
+ <body ng-controller="evalCtrl">
+  <table>
     <tr>
-      <th>Berlin</th>
-      <th>Hamburg</th>
-      <th>München</th>
+      <td><a href="">Lehrer</a></td>
+      <td><table>
+	<tr><th>KÃ¼rzel</th><th>Name</th><th>Vorname</th><th>Titel</th><th>Geschl.</th><th>Bez.</th></tr>
+	<tr><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td>[+]</td></tr>
+        <tr ng-repeat="l in lehrer">
+	  <td>{{l.kurz}}</td><td>{{l.name}}</td><td>{{l.vorname}}</td><td>{{l.titel}}</td><td>{{l.geschl}}</td><td>{{l.bez}}</td><td>[edit]</td><td>[X]</td>
+        </tr>
+      </table></td>
     </tr>
   </table>
-  <script type="text/javascript">
-   //<!-- Begin to hide script contents from old browsers.
-   myx={}; myy={}
-   $(function(){		//shorthand for $(document).ready(function(){
-     var table1 = $('#table1')
-	 var parameters = { search: "hans get" };
-     $.getJSON( '/json',parameters, function(data) {
-       //table1.html(data);
-	   myx=data
-	 });
-	 
-	 //post json
-	 $.ajax({
-       type: 'POST',
-       url: '/json',
-       data: '{"name":"franzkurt post"}', // or JSON.stringify ({name: 'jonas'}),
-       success: function(data) { myy=data; console.log(data); },
-       contentType: "application/json",
-       dataType: 'json'
-     });
-   });
-   // End the hiding here. -->
-  </script>
  </body>
 </html>
