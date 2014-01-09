@@ -3,22 +3,21 @@
  <head>
   <meta charset="utf-8">
   <title>Evaluation am JHG</title>
+  <!--wget http://code.angularjs.org/1.2.7/angular.js
+   wget http://code.angularjs.org/1.2.7/angular-route.js --!>
   <script src="js/angular.js" type="text/javascript"></script>
+  <script src="js/angular-route.js" type="text/javascript"></script>
   <script src="js/data.js" type="text/javascript"></script>
-  <script src="js/controllers.js" type="text/javascript"></script>
+  <script src="js/app.js" type="text/javascript"></script>
  </head>
- <body ng-controller="evalCtrl">
+ <body>
   <table>
     <tr>
-      <td><a href="">Lehrer</a></td>
-      <td><a href="">Klassen</a></td>
-      <td><table>
-	<tr><th>Kürzel</th><th>Name</th><th>Vorname</th><th>Titel</th><th>Geschl.</th><th>Bez.</th></tr>
-	<tr><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td>[+]</td></tr>
-        <tr ng-repeat="l in lehrer">
-	  <td>{{l.kurz}}</td><td>{{l.name}}</td><td>{{l.vorname}}</td><td>{{l.titel}}</td><td>{{l.geschl}}</td><td>{{l.bez}}</td><td>[edit]</td><td>[X]</td>
-        </tr>
-      </table></td>
+      <td><a href="#ShowTeachers">Lehrer</a></td>
+      <td><a href="#ShowClasses">Klassen</a></td>
+      <td>
+        <div ng-view></div>
+      </td>
     </tr>
   </table>
  </body>

@@ -1,0 +1,11 @@
+<table>
+  <tr>
+    <th>Kürzel</th><th>Name</th><th>Vorname</th><th>Titel</th><th>Geschl.</th><th>Bez.</th>
+  </tr>
+  <tr>
+    <td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td>[+]</td>
+  </tr>
+  <tr ng-repeat="l in lehrer">
+    <td>{{l.kurz}}</td><td>{{l.name}}</td><td>{{l.vorname}}</td><td>{{l.titel}}</td><td>{{l.geschl}}</td><td>{{l.bez}}</td><td>[edit]</td><td>[X]</td>
+  </tr>
+</table>
