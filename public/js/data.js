@@ -13,15 +13,27 @@ evalData.factory('Items', function() {
 	    {"kurz":"Dro","bez":"StR","geschl":"w","name":"Drossel","titel":"","vorname":"Monika"},
 	    {"kurz":"Kib","bez":"StR","geschl":"m","name":"Kibitz","titel":"","vorname":"Susi"}
 	  ];
-	var klassen = [					//primary key ist nr
-	    {"nr": "5A", "klasse":"5A","lkurz":"Sta"},
-	    {"nr": "5B", "klasse":"5B","lkurz":"Ams"}
+	var klassen = [					//primary key ist klasse
+	    {"klasse":"5A", "jgst":"5"},
+	    {"klasse":"5B", "jgst":"5"}
 	  ];
 	items.queryLehrer = function() {
 	  return lehrer
 	}
+        items.addLehrer = function(newLehrer) {
+          lehrer.push(newLehrer)
+        }
+        items.delLehrer = function(i) {
+          lehrer.splice(i,1)
+        }
 	items.queryKlassen = function() {
 	  return klassen
 	}
+        items.addKlasse = function(newKlasse) {
+          klassen.push(newKlasse)
+        }
+        items.delKlasse = function(i) {
+          klassen.splice(i,1)
+        }
 	return items
 });

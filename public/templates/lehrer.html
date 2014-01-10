@@ -3,9 +3,22 @@
     <th>Kürzel</th><th>Name</th><th>Vorname</th><th>Titel</th><th>Geschl.</th><th>Bez.</th>
   </tr>
   <tr>
-    <td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td><input name="nv"></td><td>[+]</td>
+    <td><input type="text" ng-model="newKurz" size="3"></td>
+    <td><input type="text" ng-model="newName" size="10"></td>
+    <td><input type="text" ng-model="newVorname" size="10"></td>
+    <td><input type="text" ng-model="newTitel" size="3"></td>
+    <td><input type="text" ng-model="newGeschl" size="3"></td>
+    <td><input type="text" ng-model="newBez" size="3"></td>
+    <td>[<a href="" ng-click="addTeacher()">+</a>]</td>
   </tr>
   <tr ng-repeat="l in lehrer">
-    <td>{{l.kurz}}</td><td>{{l.name}}</td><td>{{l.vorname}}</td><td>{{l.titel}}</td><td>{{l.geschl}}</td><td>{{l.bez}}</td><td>[edit]</td><td>[X]</td>
+    <td>{{l.kurz}}</td>
+    <td>{{l.name}}</td>
+    <td>{{l.vorname}}</td>
+    <td>{{l.titel}}</td>
+    <td>{{l.geschl}}</td>
+    <td>{{l.bez}}</td>
+    <td>[edit]</td>
+    <td>[<a href="" ng-click="delTeacher($index)">X</a>]</td>
   </tr>
 </table>

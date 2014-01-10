@@ -16,10 +16,22 @@ evalApp.config(['$routeProvider', function($routeProvider) {
 }])
 
 evalApp.controller('lehrerCtrl', function($scope, Items) {
-	  $scope.lehrer = Items.queryLehrer()
-	  $scope.klassen = Items.queryKlassen()
+  $scope.lehrer = Items.queryLehrer()
+
+  $scope.addTeacher = function() {
+    Items.addLehrer({"kurz":$scope.newKurz,"bez":$scope.newBez,"geschl":$scope.newGeschl,"name":$scope.newName,"titel":$scope.newTitel,"vorname":$scope.newVorname})
+  }
+  $scope.delTeacher = function(i) {
+    Items.delLehrer(i)
+  }
 });
 evalApp.controller('klassenCtrl', function($scope, Items) {
-	  $scope.lehrer = Items.queryLehrer()
-	  $scope.klassen = Items.queryKlassen()
+  $scope.klassen = Items.queryKlassen()
+
+  $scope.addClass = function() {
+    Items.addKlasse({"klasse":$scope.newKlasse,"jgst":$scope.newJgst})
+  }
+  $scope.delClass = function(i) {
+    Items.delKlasse(i)
+  }
 });
