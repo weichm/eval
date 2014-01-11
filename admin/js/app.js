@@ -5,11 +5,11 @@ var evalApp = angular.module('evalApp', ['ngRoute','EvalData']);
 
 evalApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/ShowTeachers', {
-    templateUrl: '/public/templates/lehrer.html',
+    templateUrl: '/admin/templates/lehrer.html',
     controller: 'lehrerCtrl'
   }).
   when('/ShowClasses', {
-    templateUrl: '/public/templates/klassen.html',
+    templateUrl: '/admin/templates/klassen.html',
     controller: 'klassenCtrl'
   }).
   otherwise({redirectTo: '/ShowTeachers'})

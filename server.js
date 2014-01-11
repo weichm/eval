@@ -67,7 +67,7 @@ app.use(clientSessions({
   secret: '0GBlJZ9EKBt2Zbi2flRPvztczCewBxXK' // CHANGE THIS!
 }));
 app.use(app.router)
-app.use("/admin", roleFactory("admin") )
+//app.use("/admin", roleFactory("admin") )      //commented out for testing purposes
 app.use("/admin", express.static(__dirname + '/admin/'));  //Test: http://localhost:20080/admin/test.html
 app.use("/public", express.static(__dirname + '/public/'));  //Test: http://localhost:20080/public/index.html
 
