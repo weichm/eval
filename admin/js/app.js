@@ -31,6 +31,13 @@ evalApp.controller('klassenCtrl', function($scope, Items) {
   $scope.addClass = function() {
     Items.addKlasse({"klasse":$scope.newKlasse,"jgst":$scope.newJgst})
   }
+  $scope.updateClass = function(i, k) {
+    Items.setKlasse(i, k)
+  }
+  $scope.cancelClass = function() {
+    $scope.klassen = Items.queryKlassen()
+    console.log($scope.klassen)
+  }
   $scope.delClass = function(i) {
     Items.delKlasse(i)
   }

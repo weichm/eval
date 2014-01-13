@@ -15,7 +15,9 @@ evalData.factory('Items', function() {
 	  ];
 	var klassen = [					//primary key ist klasse
 	    {"klasse":"5A", "jgst":"5"},
-	    {"klasse":"5B", "jgst":"5"}
+	    {"klasse":"5B", "jgst":"5"},
+	    {"klasse":"5C", "jgst":"5"},
+	    {"klasse":"5D", "jgst":"5"}
 	  ];
 	items.queryLehrer = function() {
 	  return lehrer
@@ -27,10 +29,15 @@ evalData.factory('Items', function() {
           lehrer.splice(i,1)
         }
 	items.queryKlassen = function() {
+          console.log(klassen)
 	  return klassen
 	}
         items.addKlasse = function(newKlasse) {
           klassen.push(newKlasse)
+        }
+        items.setKlasse = function(i, newKlasse) {
+          klassen[i]=newKlasse
+          //console.log(newKlasse)
         }
         items.delKlasse = function(i) {
           klassen.splice(i,1)

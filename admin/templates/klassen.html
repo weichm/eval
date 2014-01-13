@@ -7,10 +7,16 @@
     <td><input type="text" ng-model="newJgst" size="3"></td>
     <td>[<a href="" ng-click="addClass()">+</a>]</td>
   </tr>
-  <tr ng-repeat="k in klassen">
+  <tr ng-repeat-start="k in klassen">
     <td>{{k.klasse}}</td>
     <td>{{k.jgst}}</td>
     <td>[edit]</td>
     <td>[<a href="" ng-click="delClass($index)">X</a>]</td>
+  </tr>
+  <tr ng-repeat-end="">
+    <td><input type="text" value="{{k.klasse}}"></td>
+    <td><input type="text" value="{{k.jgst}}"></td>
+    <td>[<a href="" ng-click="updateClass($index, k)">update</a>]</td>
+    <td>[<a href="" ng-click="cancelClass()">cancel</a>]</td>
   </tr>
 </table>
