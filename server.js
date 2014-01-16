@@ -1,5 +1,5 @@
 /* Idee:
-   Nach erfolgreichem Einloggen �berpr�ft roleFactory die entsprechenden routes
+   Nach erfolgreichem Einloggen &uuml;berpr&uuml;ft roleFactory die entsprechenden routes
      - http://localhost:20080/ --> eingeloggt? (ja: Welcome, nein: Aufforderung, public/login.html zu besuchen)
 	 - POST http://localhost:20080/login --> express.urlencoded() --> &Uuml;berpr&uuml;fung, ob korrekt? (ja: req.mySession.username setzen, redirect zu /, nein: Fehler)
 	 - http://localhost:20080/logout --> req.mySession.reset(), redirect zu /
