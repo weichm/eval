@@ -1,7 +1,7 @@
 /* Idee:
-   Nach erfolgreichem Einloggen überprüft roleFactory die entsprechenden routes
+   Nach erfolgreichem Einloggen Ã¼berprÃ¼ft roleFactory die entsprechenden routes
      - http://localhost:20080/ --> eingeloggt? (ja: Welcome, nein: Aufforderung, public/login.html zu besuchen)
-	 - POST http://localhost:20080/login --> express.urlencoded() --> Überprüfung, ob korrekt? (ja: req.mySession.username setzen, redirect zu /, nein: Fehler)
+	 - POST http://localhost:20080/login --> express.urlencoded() --> ÃœberprÃ¼fung, ob korrekt? (ja: req.mySession.username setzen, redirect zu /, nein: Fehler)
 	 - http://localhost:20080/logout --> req.mySession.reset(), redirect zu /
 	 - http://localhost:20080/public --> express.static(__dirname + '/public/')
 	 - http://localhost:20080/admin --> roleFactory("admin") --> express.static(__dirname + '/admin/')
@@ -22,11 +22,7 @@ var creds = {
 		    }
 var checkPw = function(user, pass) {
   if (creds[user]) {
-    if (pass == creds[user].pass) {
-      return true
-    } else {
-      return false
-    }
+    return pass == creds[user].pass;
   }
 }
 
@@ -89,7 +85,7 @@ app.post('/login', express.urlencoded(), function (req, res){
     console.log(req.mySession.username + ' logged in.');
     res.redirect('/');
   } else {
-    res.send('Äh. Wrong user/pw. You need to <a href="/public/login.html">login</a>.')
+    res.send('Ã„h. Wrong user/pw. You need to <a href="/public/login.html">login</a>.')
   }
 });
 
