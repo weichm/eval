@@ -1,5 +1,5 @@
 rem test
 cd c:\eval
-node app.js
+node server.js
 rem pause
 timeout 10

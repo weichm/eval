@@ -23,6 +23,11 @@ evalData.factory('Items', function() {
 	  return lehrer
 	}
         items.addLehrer = function(newLehrer) {
+          for(var l in lehrer){
+          	if(l.kurz == newLehrer.kurz){
+          		return false;
+          	}
+          }
           lehrer.push(newLehrer)
         }
         items.delLehrer = function(i) {
@@ -33,6 +38,11 @@ evalData.factory('Items', function() {
 	  return klassen
 	}
         items.addKlasse = function(newKlasse) {
+        	for(var k in klassen){
+        		if(k.klasse = newKlasse.klasse){
+        			return false;
+        		}
+        	}
           klassen.push(newKlasse)
         }
         items.setKlasse = function(i, newKlasse) {
