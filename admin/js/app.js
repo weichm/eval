@@ -26,17 +26,19 @@ evalApp.controller('lehrerCtrl', function($scope, Items) {
   }
 });
 evalApp.controller('klassenCtrl', function($scope, Items) {
+  $scope.sizeKlasse = 3
+  $scope.sizeJgst = 2
   $scope.klassen = Items.queryKlassen()
-
+ 
   $scope.addClass = function() {
     Items.addKlasse({"klasse":$scope.newKlasse,"jgst":$scope.newJgst})
   }
   $scope.updateClass = function(i, k) {
     Items.setKlasse(i, k)
+    $scope.klassen = Items.queryKlassen()
   }
   $scope.cancelClass = function() {
     $scope.klassen = Items.queryKlassen()
-    console.log($scope.klassen)
   }
   $scope.delClass = function(i) {
     Items.delKlasse(i)

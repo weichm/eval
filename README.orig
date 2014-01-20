@@ -1,7 +1,0 @@
-als root:
-npm install -g express
-npm install -g client-sessions
-
-
-Start mit:
-node server.js

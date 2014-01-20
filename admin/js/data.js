@@ -29,7 +29,7 @@ evalData.factory('Items', function() {
           lehrer.splice(i,1)
         }
 	items.queryKlassen = function() {
-          console.log(klassen)
+          //console.log(klassen)
 	  return klassen
 	}
         items.addKlasse = function(newKlasse) {
