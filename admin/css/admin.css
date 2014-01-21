@@ -34,3 +34,19 @@
   background-color: #ffffc6;
 }
 
+/*
+ * Elements
+*/
+.eingabe input {
+  text-align: right;
+  border-width: thin;
+}
+.eingabe td {
+  text-align: right;
+}
+input.klKlasse {
+  width: 40px;
+}
+input.klJgst {
+  width: 20px;
+}

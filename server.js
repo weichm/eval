@@ -96,6 +96,49 @@ app.get('/logout', function (req, res) {
 
 
 //-------------------send/receive json
+/* Sample usage: ArrayIndexOf(...)
+var i = ArrayIndexOf(arrMovies, function(obj) {
+  return obj.MovieTitle == 'The Matrix';
+});
+if (-1 != i) {
+  alert('Found it! (Psst: take the blue pill!)');
+}*/
+function arrayIndexOf2(arr, fnc) {
+  if (!fnc || typeof (fnc) != 'function') {
+    return -1;
+  }
+  if (!arr || !arr.length || arr.length < 1) return -1;
+  for (var i = 0; i < arr.length; i++) {
+    if (fnc(arr[i])) return i;
+  }
+  return -1;
+}
+function arrayIndexOf(arr, attr, value) {
+  var i = arrayIndexOf2(arr, function(obj) {
+    if(obj[attr] != undefined) {
+      return obj[attr] == value;
+    } else {
+      return false;
+    }
+  });
+  return i;
+} 
+  var klassen = [                                 //primary key ist klasse
+              {"klasse":"5A", "jgst":"5"},
+              {"klasse":"5B", "jgst":"5"},
+              {"klasse":"5C", "jgst":"5"},
+              {"klasse":"5D", "jgst":"5"}
+          ];
+app.get('/admin/json/klassen/:id', function(req,res) {
+  var index = arrayIndexOf(klassen, "klasse", req.params.id)
+  res.send(JSON.stringify(klassen[index]))
+})
+app.get('/admin/json/klassen', function(req,res) {
+  res.send(JSON.stringify(klassen))
+})
+
+
+//-------------------send/receive json
 app.get('/json', function(req,res) {
   var val = req.query.search
   console.log(val);
