@@ -23,12 +23,7 @@ evalData.factory('Items', function() {
 	  return lehrer
 	}
         items.addLehrer = function(newLehrer) {
-          for(var l in lehrer){
-          	if(l.kurz == newLehrer.kurz){
-          		return false;
-          	}
-          }
-          lehrer.push(newLehrer)
+          items.isUnique(newLehrer)
         }
         items.delLehrer = function(i) {
           lehrer.splice(i,1)
