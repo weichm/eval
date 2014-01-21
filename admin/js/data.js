@@ -23,11 +23,11 @@ evalData.factory('Items', function() {
 	  return lehrer
 	}
         items.addLehrer = function(newLehrer) {
-          var unique = items.isUnique(newLehrer, lehrer, "kurz")
-          if(unique){
-            lehrer.push(newLehrer)
+          if(items.isUnique(newLehrer, lehrer, "kurz"){
+            klassen.push(newLehrer)
+            return true
           }
-          return unique
+          return false
         }
         items.delLehrer = function(i) {
           lehrer.splice(i,1)
@@ -37,19 +37,11 @@ evalData.factory('Items', function() {
 	  return klassen
 	}
         items.addKlasse = function(newKlasse) {
-          var unique = items.isUnique(newKlasse, klassen, "klasse")
-          if(unique){
-            klassen.push(newKlasse)
-          }
-          return unique
-          /*
-          ODER:
           if(items.isUnique(newKlasse, klassen, "klasse"){
             klassen.push(newKlasse)
             return true
           }
           return false
-          */
         }
         items.setKlasse = function(i, newKlasse) {
           klassen[i]=newKlasse
