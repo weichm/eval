@@ -1,0 +1,50 @@
+[
+  {
+    "kurz": "Sta",
+    "bez": "StD",
+    "geschl": "m",
+    "name": "Star",
+    "titel": "",
+    "vorname": "Wilhelm"
+  },
+  {
+    "kurz": "Ams",
+    "bez": "OStD",
+    "geschl": "m",
+    "name": "Amsel",
+    "titel": "Dr.",
+    "vorname": "Kurt"
+  },
+  {
+    "kurz": "Fin",
+    "bez": "StRef",
+    "geschl": "w",
+    "name": "Fink",
+    "titel": "",
+    "vorname": "Friederike"
+  },
+  {
+    "kurz": "Bun",
+    "bez": "StR",
+    "geschl": "w",
+    "name": "Buntspecht",
+    "titel": "",
+    "vorname": "Inka"
+  },
+  {
+    "kurz": "Dro",
+    "bez": "StR",
+    "geschl": "w",
+    "name": "Drossel",
+    "titel": "",
+    "vorname": "Monika"
+  },
+  {
+    "kurz": "Kib",
+    "bez": "StR",
+    "geschl": "m",
+    "name": "Kibitz",
+    "titel": "",
+    "vorname": "Susi"
+  }
+]

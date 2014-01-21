@@ -10,6 +10,7 @@
 	 - http://localhost:20080/ --> 
 */
 var http = require('http')
+var fs = require('fs')
 
 //https://github.com/mozilla/node-client-sessions
 //https://github.com/fmarier/node-client-sessions-sample
@@ -123,20 +124,69 @@ function arrayIndexOf(arr, attr, value) {
   });
   return i;
 } 
+/*  var lehrer = [                                        //primary key ist "kurz"
+    {"kurz":"Sta","bez":"StD","geschl":"m","name":"Star","titel":"","vorname":"Wilhelm"},
+    {"kurz":"Ams","bez":"OStD","geschl":"m","name":"Amsel","titel":"Dr.","vorname":"Kurt"},
+    {"kurz":"Fin","bez":"StRef","geschl":"w","name":"Fink","titel":"","vorname":"Friederike"},
+    {"kurz":"Bun","bez":"StR","geschl":"w","name":"Buntspecht","titel":"","vorname":"Inka"},
+    {"kurz":"Dro","bez":"StR","geschl":"w","name":"Drossel","titel":"","vorname":"Monika"},
+    {"kurz":"Kib","bez":"StR","geschl":"m","name":"Kibitz","titel":"","vorname":"Susi"}
+  ];
   var klassen = [                                 //primary key ist klasse
               {"klasse":"5A", "jgst":"5"},
               {"klasse":"5B", "jgst":"5"},
               {"klasse":"5C", "jgst":"5"},
               {"klasse":"5D", "jgst":"5"}
           ];
+data = {"lehrer":lehrer, "klassen":klassen}
+//write to file
+var fileLehrer = 'admin/db/lehrer.json'
+var fileKlassen = 'admin/db/klassen.json'
+fs.writeFile(fileLehrer, JSON.stringify(data["lehrer"], null, 2), 'utf8', function(err) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("JSON data saved to " + fileLehrer)
+  }
+})
+fs.writeFile(fileKlassen, JSON.stringify(data["klassen"], null, 2), 'utf8', function(err) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log("JSON data saved to " + fileKlassen)
+  }
+})*/
+var data = {} 
+var fileLehrer = 'admin/db/lehrer.json'
+var fileKlassen = 'admin/db/klassen.json'
+fs.readFile(fileLehrer, 'utf8', function(err, mydata) {
+  if (err) {
+    console.log('Error: ' + err)
+  } else {
+    console.log("JSON data read: " + fileLehrer)
+    data["lehrer"] = JSON.parse(mydata)
+  }
+})
+fs.readFile(fileKlassen, 'utf8', function(err, mydata) {
+  if (err) {
+    console.log('Error: ' + err)
+  } else {
+    console.log("JSON data read: " + fileKlassen)
+    data["klassen"] = JSON.parse(mydata)
+console.log(JSON.parse(mydata))
+  }
+})
 app.get('/admin/json/klassen/:id', function(req,res) {
   var index = arrayIndexOf(klassen, "klasse", req.params.id)
   res.send(JSON.stringify(klassen[index]))
 })
-app.get('/admin/json/klassen', function(req,res) {
+/*app.get('/admin/json/klassen', function(req,res) {
   res.send(JSON.stringify(klassen))
-})
+})*/
 
+app.get('/admin/json/:array', function(req,res) {
+  res.send(JSON.stringify(data[req.params.array]))
+})
 
 //-------------------send/receive json
 app.get('/json', function(req,res) {
