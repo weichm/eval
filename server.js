@@ -11,6 +11,7 @@
 */
 var http = require('http')
 var fs = require('fs')
+var qs = require('querystring')
 
 //https://github.com/mozilla/node-client-sessions
 //https://github.com/fmarier/node-client-sessions-sample
@@ -97,8 +98,10 @@ app.get('/logout', function (req, res) {
 
 
 //-------------------send/receive json
-/* Sample usage: ArrayIndexOf(...)
-var i = ArrayIndexOf(arrMovies, function(obj) {
+/* Sample usage: ArrayIndexOf(array, attribute, value)
+ *  --> returns the index in the array where attribute == value
+ *  arrayIndexOf2 is a helper function
+var i = ArrayIndexOf2(arrMovies, function(obj) {
   return obj.MovieTitle == 'The Matrix';
 });
 if (-1 != i) {
@@ -146,7 +149,7 @@ fs.writeFile(fileLehrer, JSON.stringify(data["lehrer"], null, 2), 'utf8', functi
   if (err) {
     console.log(err)
   } else {
-    console.log("JSON data saved to " + fileLehrer)
+    console.log("nSON data saved to " + fileLehrer)
   }
 })
 fs.writeFile(fileKlassen, JSON.stringify(data["klassen"], null, 2), 'utf8', function(err) {
@@ -157,36 +160,48 @@ fs.writeFile(fileKlassen, JSON.stringify(data["klassen"], null, 2), 'utf8', func
   }
 })*/
 var data = {} 
-var fileLehrer = 'admin/db/lehrer.json'
-var fileKlassen = 'admin/db/klassen.json'
-fs.readFile(fileLehrer, 'utf8', function(err, mydata) {
-  if (err) {
-    console.log('Error: ' + err)
-  } else {
-    console.log("JSON data read: " + fileLehrer)
-    data["lehrer"] = JSON.parse(mydata)
-  }
-})
-fs.readFile(fileKlassen, 'utf8', function(err, mydata) {
-  if (err) {
-    console.log('Error: ' + err)
-  } else {
-    console.log("JSON data read: " + fileKlassen)
-    data["klassen"] = JSON.parse(mydata)
-console.log(JSON.parse(mydata))
-  }
-})
-app.get('/admin/json/klassen/:id', function(req,res) {
-  var index = arrayIndexOf(klassen, "klasse", req.params.id)
-  res.send(JSON.stringify(klassen[index]))
-})
-/*app.get('/admin/json/klassen', function(req,res) {
-  res.send(JSON.stringify(klassen))
-})*/
+var arrays = {
+  "lehrer": {"key": "kurz", "file": "admin/db/lehrer.json"}, //das Array data["lehrer"] besitzt das Schlüsselattr. "kurz", die Daten sind gespeichert unter "file"
+  "klassen": {"key": "klasse", "file": "admin/db/klassen.json"}
+}
+for (var i in arrays) {
+  var obj = arrays[i]
+  console.log("reading JSON data: " + obj.file + " ...")
+  data[i] = JSON.parse(fs.readFileSync(obj.file, 'utf8'))
+}
 
-app.get('/admin/json/:array', function(req,res) {
+// GET
+app.get('/admin/json/:array/:id', function(req,res) {  //Test with http://localhost:20080/admin/json/klassen/5C
+  var myarray = data[req.params.array]
+  var index = arrayIndexOf(myarray, arrays[req.params.array]["key"], req.params.id)
+  res.send(JSON.stringify(myarray[index]))
+})
+app.get('/admin/json/:array', function(req,res) {  //Test with http://localhost:20080/admin/json/klassen/
   res.send(JSON.stringify(data[req.params.array]))
 })
+
+// POST --> adds / updates element
+app.post('/admin/json', express.json(), function(req,res) {  
+  //Test with curl -X POST -H "Content-Type: application/json" -d '{"klasse": "6A", "jgst": "6"}' http://localhost:20080/admin/json?array=klassen
+  var myarray = data[req.param("array")]       //wg. ?array=klassen
+  if (typeof req.param("id") != "undefined") {
+    var index = arrayIndexOf(myarray, arrays[req.param("array")]["key"], req.param("id"))
+    myarray[index] = req.body
+  } else {
+    myarray.push(req.body)
+  }
+  console.log(myarray)
+  res.end()
+})
+
+// DELETE --> deletes element
+app.delete('/admin/json/:array/:id', function(req,res) {  //Test with 
+  var myarray = data[req.params.array]
+  var index = arrayIndexOf(myarray, arrays[req.params.array]["key"], req.params.id)
+  myarray.splice(index,1)
+  res.end()
+})
+
 
 //-------------------send/receive json
 app.get('/json', function(req,res) {

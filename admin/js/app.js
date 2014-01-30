@@ -29,17 +29,21 @@ evalApp.controller('klassenCtrl', function($scope, Items) {
   $scope.klassen = Items.query({}, {'array':"klassen"} )
  
   $scope.addClass = function() {
-    Items.addKlasse({"klasse":$scope.newKlasse,"jgst":$scope.newJgst})
+    var newObj = {"klasse":$scope.newKlasse,"jgst":$scope.newJgst}
+    $scope.klassen.push(newObj)
+    Items.save({"array": "klassen"}, newObj)
   }
-  $scope.updateClass = function(i, k) {
-    Items.setKlasse(i, k)
-    $scope.klassen = Items.query({}, {'array':"klassen"} )
+  $scope.delClass = function(i) {
+    var myid = $scope.klassen[i].klasse
+    $scope.klassen.splice(i,1)
+    Items.delete({}, {'array':"klassen", 'id':myid})
+  }
+  $scope.updateClass = function(i, newObj) {
+    $scope.klassen[i] = newObj
+    var myid = $scope.klassen[i].klasse
+    Items.save({"array": "klassen", "id": myid}, newObj)
   }
   $scope.cancelClass = function() {
     $scope.klassen = Items.query({}, {'array':"klassen"} )
-  }
-  $scope.delClass = function(i) {
-    Items.delete({}, {})
-    $scope.klassen = Items.queryKlassen()
   }
 });
