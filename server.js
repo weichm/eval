@@ -176,22 +176,29 @@ app.get('/admin/json/:array/:id', function(req,res) {  //Test with http://localh
   var index = arrayIndexOf(myarray, arrays[req.params.array]["key"], req.params.id)
   res.send(JSON.stringify(myarray[index]))
 })
+// GET --> Items.query({}, {'array':"klassen"} )
 app.get('/admin/json/:array', function(req,res) {  //Test with http://localhost:20080/admin/json/klassen/
   res.send(JSON.stringify(data[req.params.array]))
 })
 
-// POST --> adds / updates element
+// POST <-- adds    (=Items.save({"array": "klassen"}, newObj) / 
+//          updates Items.save({"array": "klassen", "id": myid}, obj)
 app.post('/admin/json', express.json(), function(req,res) {  
   //Test with curl -X POST -H "Content-Type: application/json" -d '{"klasse": "6A", "jgst": "6"}' http://localhost:20080/admin/json?array=klassen
   var myarray = data[req.param("array")]       //wg. ?array=klassen
-  if (typeof req.param("id") != "undefined") {
+  if (typeof req.param("id") != "undefined") {  //id vorhanden --> update existing object
     var index = arrayIndexOf(myarray, arrays[req.param("array")]["key"], req.param("id"))
     myarray[index] = req.body
-  } else {
+    res.send({status: "ok", message: "Item [" + req.param("id") + "] aktualisiert"})
+    console.log("Update existing object")
+  } else {  //keine id --> add object
+    //TODO: Test, ob id schon vorhanden ist, wenn ja: Fehler melden
     myarray.push(req.body)
+    res.send({status: "ok", message: "Item hinzugefügt"})
+    console.log("Add object"+req.body[0])
   }
-  console.log(myarray)
-  res.end()
+  
+  //res.end()
 })
 
 // DELETE --> deletes element

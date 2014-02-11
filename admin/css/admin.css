@@ -2,12 +2,20 @@
  * Basic layout
 */
 
+body {
+  margin: 0;
+}
 #header {
   height: 100px;
   background-color: #ff0;
 }
-#footer {
-  height: 50px;
+#statusbar {
+  /*height: 50px;*/
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 5px;
+  padding-bottom: 15px;
   background-color: #ff0;
 }
 #content-body-wrapper {

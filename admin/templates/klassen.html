@@ -5,7 +5,7 @@
   <tr>
     <td><input class="klKlasse" type="text" ng-model="newKlasse"></td>
     <td><input class="klJgst" type="text" ng-model="newJgst"></td>
-    <td>[<a href="" ng-click="addClass()">+</a>]</td>
+    <td>[<a href="" ng-click="addObj('klassen', {klasse: newKlasse, jgst: newJgst})">+</a>]</td>
   </tr>
   <tr ng-show="!showMe" ng-repeat-start="k in klassen">
     <td>{{k.klasse}}</td>
